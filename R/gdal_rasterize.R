@@ -146,7 +146,11 @@ gdal_rasterize <- function(
 	
 	if(verbose) message(paste("GDAL command being used:",cmd))
 	
-	cmd_output <- system(cmd,intern=TRUE) 
+	if (Sys.which(c("cmd"))["cmd"]!="") {
+	  cmd_output <- system("cmd.exe", input = cmd, intern=TRUE) 
+	} else {
+	  cmd_output <- system(cmd, intern=TRUE)   
+	} 
 	
 	if(output_Raster)
 	{
