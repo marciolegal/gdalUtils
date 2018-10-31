@@ -66,15 +66,13 @@
 #' @import rgdal
 #' @export
 
-gdal_proximity <- function(
-  src_datasource,dst_filename, srcband, dstband, of ,co,ot, 
-  values,distunits, maxdist, nodata, use_input_nodata, 
-  fixed_buf_val,
-  #		additional_commands,
-  output_Raster=FALSE,
-  ignore.full_scan=TRUE,
-  verbose=FALSE)
-{
+gdal_proximity = function(src_datasource,dst_filename, srcband, dstband, of ,co,ot, 
+                          values,distunits, maxdist, nodata, use_input_nodata, 
+                          fixed_buf_val,
+                          # other
+                          output_Raster=FALSE,
+                          ignore.full_scan=TRUE,
+                          verbose=FALSE) {
   if(output_Raster && (!requireNamespace("raster") || !requireNamespace("rgdal")))
   {
     warning("rgdal and/or raster not installed. Please install.packages(c('rgdal','raster')) or set output_Raster=FALSE")
@@ -85,7 +83,7 @@ gdal_proximity <- function(
   
   if(verbose) message("Checking gdal_installation...")
   gdal_setInstallation(ignore.full_scan=ignore.full_scan)
-  if(is.null(getOption("gdalUtils_gdalPath"))) return()
+  if(is.null(getOption("gdalUtils_gdalPath"))) stop("no gdal")
   
   # Place all gdal function variables into these groupings:
   parameter_variables <- list(
@@ -121,7 +119,7 @@ gdal_proximity <- function(
   
   parameter_noquotes <- unlist(parameter_variables$vector)
   
-  executable <- "gdal_proximity"
+  executable <- "gdal_proximity.bat"
   
   cmd <- gdal_cmd_builder(
     executable=executable,
@@ -145,6 +143,6 @@ gdal_proximity <- function(
     return(brick(dst_filename))	
   } else
   {
-    return(NULL)
+    return(cmd_output)
   }		
 }
