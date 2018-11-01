@@ -14,7 +14,7 @@
 #' @param maxdist Numeric. The maximum distance to be generated. The nodata value will be used for pixels beyond this distance. If a nodata value is not provided, the output band will be queried for its nodata value. If the output band does not have a nodata value, then the value 65535 will be used. Distance is interpreted in pixels unless -distunits GEO is specified. 
 #' @param nodata  Numeric. Specify a nodata value to use for the destination proximity raster.
 #' @param use_input_nodata  Logical. (GDAL >= 2.0) Indicate whether nodata pixels in the input raster should be nodata in the output raster (default FALSE).
-#' @param fixed-buf-val Numeric. Specify a value to be applied to all pixels that are within the -maxdist of target pixels (including the target pixels) instead of a distance value.
+#' @param fixed_buf_val Numeric. Specify a value to be applied to all pixels that are within the -maxdist of target pixels (including the target pixels) instead of a distance value.
 #' @param output_Raster Logical. If TRUE, returns the resulting raster as a RasterBrick.
 #' @return NULL or if(output_Raster), a RasterBrick.
 #' @author Marcio HR Sales (\email{marciosales@@outlook.com}) (wrapper) and Frank Warmerdam (GDAL lead developer).
